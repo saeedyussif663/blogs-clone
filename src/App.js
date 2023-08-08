@@ -6,14 +6,16 @@ import Footer from './Components/Footer';
 import Home from './Components/Home';
 import SingleBlog from './Components/SingleBlog';
 
+import './index.css';
+
 function App() {
   return (
-    <div>
+    <div className="container">
       <NavBar />
       <Routes>
         <Route   path='/' element={<Home />}/>
         <Route path='/blog/:id'  element={<SingleBlog/>} />
-        <Route  path='addnew' element={<Form />} />
+        <Route  path='/addnew' element={<Form />} />
       </Routes>
       <Footer/>
     </div>
