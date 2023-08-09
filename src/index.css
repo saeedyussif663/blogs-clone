@@ -118,11 +118,16 @@ footer a:hover {
 
 @media  screen and (max-width: 770px) {
 
+  .nav-container h3 {
+      margin-left: 35px;
+  }
+
   .nav-container .menu {
     display: block;
     padding: 7px;
     background-color: #f9f9f9;
     border-radius: 5px;
+    margin-right: 35px;
   }
 
   .nav-container .menu:hover {
@@ -131,7 +136,20 @@ footer a:hover {
   }
 
   .bar ul {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 6rem;
+  font-size: 1.2rem;
+  background-color:  rgb(229 229 229);
+  margin-top: 25px;
 }
 
+
+.bar ul a {
+  margin-top: 15px;
+}
 }
