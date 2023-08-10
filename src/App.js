@@ -9,20 +9,25 @@ import SingleBlog from './Components/SingleBlog';
 import Loader from './Components/Loader'
 
 import './index.css';
+import { useGlobalContext } from './context';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+ const {isLoading} = useGlobalContext()
+
   return (
     <div className="container">
       <NavBar />
-      {isLoading && <Loader/>}
-      <Routes>
-        <Route   path='/' element={<Home />}/>
-        <Route path='/blog/:id'  element={<SingleBlog/>} />
-        <Route  path='/addnew' element={<Form />} />
-      </Routes>
-      <Footer/>
-    </div>
+      <div className='content'>
+        {isLoading ? <Loader /> : 
+        <Routes>
+          <Route   path='/' element={<Home />}/>
+          <Route path='/blog/:id'  element={<SingleBlog/>} />
+          <Route  path='/addnew' element={<Form title="POST"/>} />
+            </Routes>
+        }
+        </div>
+        <Footer />
+      </div>
   );
 }
 
