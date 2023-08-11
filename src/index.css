@@ -10,13 +10,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   
 }
 
-.content {
-  flex: 1;
-}
+/* .content {
+  min-height: inherit;
+} */
 
 
 .nav-container {
@@ -107,7 +106,7 @@
   display: flex;
   align-items: flex-start;
   width: 60%;
-  margin: 85px auto 0 auto;
+  margin: 85px auto 80px auto;
   flex-direction: column;
 }
 
@@ -177,6 +176,7 @@ textarea {
   background-color: #d0edf0;
   outline-color: #26c0ab;
   border: none;
+  padding-left: 5px;
 }
 
 footer {
@@ -188,8 +188,8 @@ footer {
   text-align: center;
   color:  rgb(64 64 64);
   background-color:  rgb(229 229 229);
-  position: sticky;
-  top: 90%;;
+  position: fixed;
+  bottom: 0;
   z-index: 50;
 }
 

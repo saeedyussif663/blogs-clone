@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react"
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-     const [isLoading, setIsLoading] = useState(false);
+     const [isLoading, setIsLoading] = useState(true);
 
     return (
         <AppContext.Provider value={{

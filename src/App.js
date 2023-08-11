@@ -18,13 +18,12 @@ function App() {
     <div className="container">
       <NavBar />
       <div className='content'>
-        {isLoading ? <Loader /> : 
+        
         <Routes>
-          <Route   path='/' element={<Home />}/>
+          <Route   path='/' element={isLoading ? <Loader /> : <Home />  }/> 
           <Route path='/blog/:id'  element={<SingleBlog/>} />
           <Route  path='/addnew' element={<Form title="POST"/>} />
             </Routes>
-        }
         </div>
         <Footer />
       </div>
