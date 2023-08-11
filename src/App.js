@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react'
 
 import NavBar from './Components/NavBar';
 import Form from './Components/Form';
@@ -12,7 +11,7 @@ import './index.css';
 import { useGlobalContext } from './context';
 
 function App() {
- const {isLoading} = useGlobalContext()
+ const {state} = useGlobalContext()
 
   return (
     <div className="container">
@@ -20,7 +19,7 @@ function App() {
       <div className='content'>
         
         <Routes>
-          <Route   path='/' element={isLoading ? <Loader /> : <Home />  }/> 
+          <Route   path='/' element={state.isLoading ? <Loader /> : <Home />  }/> 
           <Route path='/blog/:id'  element={<SingleBlog/>} />
           <Route  path='/addnew' element={<Form title="POST"/>} />
             </Routes>

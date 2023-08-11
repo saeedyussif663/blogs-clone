@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import {useGlobalContext} from '../context'
 
 const NavBar = () => {
-    const [isShowing, setIsShowing] = useState(false);
+    const {state, toggleMenu, closeNav} = useGlobalContext()
 
-    const toggleMenu = () => {
-        setIsShowing(prevIsShowing =>  !prevIsShowing);
-    }
 
     return (
         <div className="nav-container">
             <h3>Bloggg</h3>
             <div className="bar"
-                style={isShowing ? { top: "50px" } : { top: "-100px" }}>
+                style={state.isShowing ? { top: "50px" } : { top: "-150px" }}>
                     <div className="mobile-nav">
                     <ul>
-                        <Link to='/'><button>Blogs</button></Link>
-                        <Link to='/addnew'><button>Create Blog</button></Link>
+                        <Link to='/'><button onClick={closeNav}>Blogs</button></Link>
+                        <Link to='/addnew' onClick={closeNav}><button>Create Blog</button></Link>
                         </ul>
                     </div>
                 </div>

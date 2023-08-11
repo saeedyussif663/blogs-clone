@@ -133,7 +133,7 @@ label {
 i {
   position: absolute;
   left: 0;
-  bottom: 5px;
+  bottom: 10px;
   z-index: 10px;
   opacity: 0.3;
   margin-left: 10px;
@@ -147,6 +147,7 @@ input, select {
   font-size: 1.2rem;
   outline-color: #26c0ab;
   border: none;
+  border-radius: 5px;
   text-align: center;
 }
 
@@ -176,6 +177,7 @@ textarea {
   background-color: #d0edf0;
   outline-color: #26c0ab;
   border: none;
+  border-radius: 5px;
   padding-left: 5px;
 }
 

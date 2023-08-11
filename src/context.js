@@ -1,13 +1,36 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useReducer } from "react";
+
+import {reducer} from '../src/reducer'
+
+
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-     const [isLoading, setIsLoading] = useState(true);
+
+    const intialState = {
+        isLoading: true,
+        isShowing: false,
+    }
+
+
+
+    const toggleMenu = () => {
+        dispatch({ type: "TOGGLEMENU" });
+    }
+
+    const closeNav = () => {
+        dispatch({type: "CLOSE"})
+    }
+
+
+    const [state, dispatch] = useReducer(reducer, intialState);
 
     return (
         <AppContext.Provider value={{
-            isLoading,
+            state,
+            toggleMenu,
+            closeNav
         }}>
             {children}
         </AppContext.Provider>
