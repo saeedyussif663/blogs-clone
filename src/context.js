@@ -11,9 +11,26 @@ const AppProvider = ({ children }) => {
     const intialState = {
         isLoading: true,
         isShowing: false,
+        blogDetails: {
+            id: '',
+            title: '',
+            author: '',
+            category: '',
+            content: '',
+            dateCreated: ''
+        }
     }
 
-
+    const submitHandler = (e, title, author, category, content) => {
+        e.preventDefault()
+        dispatch({
+            type: "SUBMIT",
+            titleRef: title,
+            authorRef: author,
+            categoryRef: category,
+            contentRef: content
+        })
+    }
 
     const toggleMenu = () => {
         dispatch({ type: "TOGGLEMENU" });
@@ -30,7 +47,8 @@ const AppProvider = ({ children }) => {
         <AppContext.Provider value={{
             state,
             toggleMenu,
-            closeNav
+            closeNav,
+            submitHandler,
         }}>
             {children}
         </AppContext.Provider>
