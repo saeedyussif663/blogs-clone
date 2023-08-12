@@ -10,14 +10,19 @@ const Form = ({ action }) => {
     let categoryRef = useRef('Tech')
     let contentRef = useRef('')
 
+    const handleChangle = (event) =>{
+         titleRef.current = event.target.value;
+    }
 
     return (
         <form className="form-container">
             <div className="title-container">
                 <label htmlFor="title">Title:</label>
                 <input
+                    value={titleRef.current.value}
+                    ref={titleRef}
                     type="text"
-                    id="author"
+                    id="title"
                     required
                     maxLength="70"
                 />

@@ -10,6 +10,8 @@ import moment from "moment/moment";
       });
     }
 
+
+
   export const reducer = (state, action) => {
     if (action.type === "TOGGLEMENU") {
         return {
@@ -38,8 +40,11 @@ import moment from "moment/moment";
                   content,
                   dateCreated: date
           }
-          console.log(newBlog);
-        //   title = '';
+          addBlog(newBlog);
+          action.titleRef.current.value = '';
+          action.authorRef.current.value = '';
+          action.categoryRef.current.value = 'Tech';
+          action.contentRef.current.value = '';
           return {
               ...state,
               blogDetails: newBlog,
