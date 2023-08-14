@@ -11,8 +11,7 @@ const Home = () => {
     let randomImage;
     
     const openSingleBlog = (id) => {
-        console.log(id);
-        navigate( `/blog/${id}`)
+        navigate( `/blogs/${id}`)
     }
 
     const random = () => {

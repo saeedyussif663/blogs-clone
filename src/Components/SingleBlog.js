@@ -6,30 +6,29 @@ import { useEffect, useState } from "react"
 
 const SingleBlog = () => {
     const [isLoading, setIsLoading] = useState(true);
-    let array;
+    const [blog, setBlog] = useState('')
     const { id } = useParams();
     
-    const renderSingleBlog = async (id) => {
+    const fetchSingleBlog = async (id) => {
         try {
             const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`)
-            const data = await response.json();
-            array.push(data)
-            setIsLoading(isLoading => !isLoading);
+            const data = await response.json()
+            setBlog(data)
+            setIsLoading(prev => !prev)
         } catch (error) {
             console.log(error);
         }
-          
-    }
+    } 
 
     useEffect(() => {
-        renderSingleBlog(id)
+        fetchSingleBlog(id)
     }, [])
 
-    console.log(array)
-    // const {title, content, category, dateCreated, author} = array
-
+    
     return (
-        <h1></h1>
+        <div className="single-blog">
+            <h1>{blog.title}</h1>
+        </div>
     )
 }
 

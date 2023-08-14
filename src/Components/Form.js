@@ -13,7 +13,7 @@ const Form = ({ action }) => {
 
 
     return (
-        <form className="form-container">
+        <form action="POST" className="form-container">
             <div className="title-container">
                 <label htmlFor="title">Title:</label>
                 <input
@@ -52,7 +52,7 @@ const Form = ({ action }) => {
                     type="text" id="content" />
             </div>
             <div className="button-container">
-            <button
+            <button type="sumbit"
                         onClick={
                      (e) => {
                          submitHandler(e, titleRef, authorRef, categoryRef, contentRef)

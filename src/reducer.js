@@ -20,14 +20,6 @@ export const reducer = (state, action) => {
         }
     }
 
-    if (action.type === 'ADDABLOG') {
-        let singleBlogArray = []
-        singleBlogArray.push(action.blog)
-        return {
-            ...state,
-            singleBlog: singleBlogArray
-        }
-    }
 
     if (action.type === 'PUSHBLOG') {
         const blog = state.blogs.push({
@@ -67,8 +59,13 @@ export const reducer = (state, action) => {
                   content,
                   dateCreated: date
           }
-
-          addBlog(newBlog);
+        
+          if (title.trim() === '' || content.trim() === '' || author.trim() === '') {
+              return state
+          } else {
+              addBlog(newBlog);
+          }
+          
           action.titleRef.current.value = '';
           action.authorRef.current.value = '';
           action.categoryRef.current.value = 'Tech';
