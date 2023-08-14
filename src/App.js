@@ -20,7 +20,7 @@ function App() {
         
         <Routes>
           <Route   path='/' element={state.isLoading ? <Loader /> : <Home />  }/> 
-          <Route path='/blog/:id'  element={<SingleBlog/>} />
+          <Route path='/blog/:id'  element={state.isLoading ? <Loader/> : <SingleBlog/>}  />
           <Route  path='/addnew' element={<Form action="POST"/>} />
             </Routes>
         </div>

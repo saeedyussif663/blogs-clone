@@ -8,7 +8,7 @@ const NavBar = () => {
 
     return (
         <div className="nav-container">
-            <h3>Bloggg</h3>
+            <Link to='/'><h3>Bloggg</h3></Link>
             <div className="bar"
                 style={state.isShowing ? { top: "50px" } : { top: "-150px" }}>
                     <div className="mobile-nav">

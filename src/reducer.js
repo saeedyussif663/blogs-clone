@@ -12,7 +12,34 @@ import moment from "moment/moment";
 
 
 
-  export const reducer = (state, action) => {
+export const reducer = (state, action) => {
+    if (action.type === 'ISLOADING') {
+        return {
+            ...state,
+            isLoading: false
+        }
+    }
+
+    if (action.type === 'ADDABLOG') {
+        let singleBlogArray = []
+        singleBlogArray.push(action.blog)
+        return {
+            ...state,
+            singleBlog: singleBlogArray
+        }
+    }
+
+    if (action.type === 'PUSHBLOG') {
+        const blog = state.blogs.push({
+            id: action.key,
+            ...action.element
+        });
+        return {
+            ...state,
+            blog
+        }
+    }
+
     if (action.type === "TOGGLEMENU") {
         return {
             ...state, 
@@ -40,6 +67,7 @@ import moment from "moment/moment";
                   content,
                   dateCreated: date
           }
+
           addBlog(newBlog);
           action.titleRef.current.value = '';
           action.authorRef.current.value = '';
@@ -49,6 +77,6 @@ import moment from "moment/moment";
               ...state,
               blogDetails: newBlog,
           }
-     }
+    }
     return state
 }

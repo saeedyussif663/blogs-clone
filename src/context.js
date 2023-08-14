@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+
 
 import {reducer} from '../src/reducer'
 
@@ -8,9 +9,12 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
 
+
     const intialState = {
         isLoading: true,
         isShowing: false,
+        singleBlog: [],
+        blogs : [],
         blogDetails: {
             id: '',
             title: '',
@@ -19,6 +23,7 @@ const AppProvider = ({ children }) => {
             content: '',
             dateCreated: ''
         }
+       
     }
 
     const submitHandler = (e, title, author, category, content) => {
@@ -32,6 +37,7 @@ const AppProvider = ({ children }) => {
         })
     }
 
+
     const toggleMenu = () => {
         dispatch({ type: "TOGGLEMENU" });
     }
@@ -40,6 +46,26 @@ const AppProvider = ({ children }) => {
         dispatch({type: "CLOSE"})
     }
 
+ 
+    const fetchBlogs = async () => {
+        try {
+            const response = await fetch('https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs.json')
+       let  data = await response.json();
+        for (const key in data) {
+            const element = data[key];
+            dispatch({type: 'PUSHBLOG', key, element})
+            
+            }
+        dispatch({type: 'ISLOADING'})
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+
+    useEffect(() => {
+        fetchBlogs();
+    }, [])
 
     const [state, dispatch] = useReducer(reducer, intialState);
 
