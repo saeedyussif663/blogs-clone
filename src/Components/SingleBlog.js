@@ -2,32 +2,53 @@ import { useParams } from "react-router-dom"
 
 import Loader from "./Loader";
 
+import { useGlobalContext } from "../context";
+
 import { useEffect, useState } from "react"
 
 const SingleBlog = () => {
+    const { state } = useGlobalContext();
+    const { blogs } = state;
+
+
     const [isLoading, setIsLoading] = useState(true);
-    const [blog, setBlog] = useState('')
+    const [singleBlog, setSingleBlog] = useState('')
     const { id } = useParams();
     
-    const fetchSingleBlog = async (id) => {
-        try {
-            const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`)
-            const data = await response.json()
-            setBlog(data)
-            setIsLoading(prev => !prev)
-        } catch (error) {
-            console.log(error);
+    const findSingleBlog =  (id) => {
+      blogs.forEach(element => {
+          if (id === element.id) {
+            setSingleBlog(element)
         }
+      });
     } 
 
     useEffect(() => {
-        fetchSingleBlog(id)
+        findSingleBlog(id)
     }, [])
+
 
     
     return (
         <div className="single-blog">
-            <h1>{blog.title}</h1>
+            <div className="single-img-container">
+                <img src={`https://mdbcdn.b-cdn.net/img/new/slides/008.jpg`}alt={singleBlog.title} />
+            </div>
+            <div className="identifiers">
+                <div className="details-container">
+                    <img src={`https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).jpg`}alt={singleBlog.author} />
+                    <span>{singleBlog.author}</span>
+                    <span>{singleBlog.dateCreated}</span>
+                    <span>{singleBlog.category}</span>
+                </div>
+                <div className="action-container">
+                    <i className="fa-solid fa-trash"></i>
+                    <i className="fa-regular fa-pen-to-square"></i>
+                </div>
+            </div>
+              <div className="content-conatainer">
+                    <p>{singleBlog.content}</p>
+                </div>
         </div>
     )
 }
