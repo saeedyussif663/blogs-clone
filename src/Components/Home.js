@@ -41,9 +41,9 @@ const Home = () => {
                     <div className="blog-details">
                             <h4>{blog.title}</h4>
                         <div className="rest">
-                            <p>{blog.author}</p>
-                            <div className="category">{blog.category}</div>
-                            <p>{blog.dateCreated}</p>
+                            <p>published by {blog.author}</p>
+                            <div className="category"><i className="fa-solid fa-paintbrush"></i>{blog.category}</div>
+                            <p className="date-created">{blog.dateCreated}</p>
                         </div>
                     </div>
                     <div className="action">
