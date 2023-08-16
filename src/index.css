@@ -173,14 +173,16 @@
 .identifiers {
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
+  margin: 5px;
   justify-content: space-between;
 }
+
 
 .details-container {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center; 
+  margin-left: 5px;
 }
 
 .details-container span {
@@ -189,14 +191,23 @@
 }
 
 .content-conatainer {
-  margin: 20px 2px;
+  border: 1px solid red; 
+  margin-top: 20px;
 }
+
+.content-conatainer p {
+  padding-left: 7px;
+  text-align: justify;
+  line-height: 1.5
+}
+
 
 .identifiers img {
   width: 30px;
   height: 30px;
   border-radius: 15px;
   display: inline;
+  margin-left: 5px;
 }
 
 .action-container i {
