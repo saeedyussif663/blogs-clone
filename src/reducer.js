@@ -20,6 +20,13 @@ export const reducer = (state, action) => {
         }
     }
 
+    if (action.type === 'CLEARBLOGARRAY') {
+        return {
+            ...state,
+            blogs: []
+        }
+    }
+
 
     if (action.type === 'PUSHBLOG') {
         const blog = state.blogs.push({
@@ -44,6 +51,13 @@ export const reducer = (state, action) => {
             ...state,
             isShowing: !state.isShowing
         }
+      }
+
+    if (action.type === 'TOGGLEMODAL') {
+        return {
+            ...state,
+            isModalShowing: !state.isModalShowing
+          }
       }
       
       if (action.type === "SUBMIT") {

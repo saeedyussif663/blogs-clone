@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
 
 
     const intialState = {
+        isModalShowing: false,
         isLoading: true,
         isShowing: false,
         singleBlog: [],
@@ -46,8 +47,13 @@ const AppProvider = ({ children }) => {
         dispatch({type: "CLOSE"})
     }
 
+    const toggleModal = () => {
+        dispatch({ type: 'TOGGLEMODAL' })
+    }
+
  
     const fetchBlogs = async () => {
+        dispatch({type: 'CLEARBLOGARRAY'})
         try {
             const response = await fetch('https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs.json')
        let  data = await response.json();
@@ -75,6 +81,8 @@ const AppProvider = ({ children }) => {
             toggleMenu,
             closeNav,
             submitHandler,
+            toggleModal,
+            fetchBlogs
         }}>
             {children}
         </AppContext.Provider>

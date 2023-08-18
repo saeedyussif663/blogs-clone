@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom"
 
-import Loader from "./Loader";
+import Modal from "./Modal";
 
 import { useGlobalContext } from "../context";
 
 import { useEffect, useState } from "react"
 
 const SingleBlog = () => {
-    const { state } = useGlobalContext();
+    const { state , toggleModal} = useGlobalContext();
     const { blogs } = state;
 
 
@@ -40,13 +40,17 @@ const SingleBlog = () => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         randomUser();
         random();
         findSingleBlog(id)
+        setIsLoading(false)
     }, [])
 
 
     return (
+        <>
+        {state.isModalShowing && <Modal/>}
         <div className="single-blog">
             <div className="single-img-container">
                 <img src={`https://mdbcdn.b-cdn.net/img/new/slides/${randomPicNum}.jpg`}alt={singleBlog.title} />
@@ -60,7 +64,7 @@ const SingleBlog = () => {
                     <span>{singleBlog.author}</span>
                 </div>
                 <div className="action-container">
-                    <i className="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-trash" onClick={toggleModal}></i>
                     <i className="fa-regular fa-pen-to-square"></i>
                 </div>
             </div>
@@ -68,7 +72,8 @@ const SingleBlog = () => {
                  <h2>{ singleBlog.title}</h2>
                     <p>{singleBlog.content}</p>
                 </div>
-        </div>
+            </div>
+            </>
     )
 }
 

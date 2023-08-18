@@ -136,6 +136,10 @@
   font-size: 1.2rem;
 }
 
+i {
+  cursor: pointer;
+}
+
 
 .rest   p {
   margin-bottom: 15px;
@@ -268,6 +272,72 @@
     100% {
     transform: rotate(360deg);
   }
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0, 0.5);
+}
+ 
+.modal {
+  position: fixed;
+  top: 8%;
+  left: 35%;
+  z-index: 100;
+  margin: auto;
+}
+
+.modal > section {
+z-index: 100;
+background: white;
+margin: 8%;
+height: 200px;
+border-radius: 15px;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 10px 50px;
+}
+
+.modal > section  h3 {
+  font-size: 22px;
+  font-weight: bold;
+   color:   rgb(55 65 81);
+  margin: 20px 2px;
+}
+
+.modal > section p {
+  text-align: center;
+  width: 260px;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+
+.buttons-container button {
+  cursor: pointer;
+  margin: 2px 10px;
+  padding: 10px 15px;
+  background-color: rgb(209 213 219);
+  border: none;
+  border-radius: 5px;
+}
+
+.buttons-container button:first-child {
+  	background-color: rgb(75 85 99);
+    color: white;
+}
+
+.buttons-container button:hover {
+    background-color: rgb(156 163 175);
 }
 
 .form-container {
@@ -526,5 +596,21 @@ textarea {
   top: 25px;
 }
 
+.modal {
+  top: 5%;
+  left: 5%;
+  width: 80%;
+}
 
+.modal > section {
+  margin-top: 18%;
+  width: 100%;
+  padding: 10px 20px;
+   height: 222px;
+}
+
+.modal > section p {
+  line-height: 1.4;
+  width: 270px;
+}
 }
