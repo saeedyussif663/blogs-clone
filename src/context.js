@@ -10,6 +10,7 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
 
 
+
     const intialState = {
         isModalShowing: false,
         isLoading: true,
@@ -27,6 +28,22 @@ const AppProvider = ({ children }) => {
        
     }
 
+    const deleteBlog = async (id) => {
+        dispatch({ type: 'TOGGLEMODAL' })
+        try {
+            const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            fetchBlogs()
+            window.location.href = '/';
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const submitHandler = (e, title, author, category, content) => {
         e.preventDefault()
         dispatch({
@@ -35,7 +52,7 @@ const AppProvider = ({ children }) => {
             authorRef: author,
             categoryRef: category,
             contentRef: content
-        })
+        });
     }
 
 
@@ -82,7 +99,7 @@ const AppProvider = ({ children }) => {
             closeNav,
             submitHandler,
             toggleModal,
-            fetchBlogs
+            deleteBlog
         }}>
             {children}
         </AppContext.Provider>

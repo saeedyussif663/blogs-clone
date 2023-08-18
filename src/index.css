@@ -408,6 +408,7 @@ input, select {
 }
 
 textarea {
+  font-size: 1.1rem;
   height: 252px;
   width: 100%;
   resize: vertical;

@@ -78,12 +78,14 @@ export const reducer = (state, action) => {
               return state
           } else {
               addBlog(newBlog);
+              window.location.href = '/';
           }
           
           action.titleRef.current.value = '';
           action.authorRef.current.value = '';
           action.categoryRef.current.value = 'Tech';
           action.contentRef.current.value = '';
+        
           return {
               ...state,
               blogDetails: newBlog,
