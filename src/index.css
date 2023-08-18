@@ -77,6 +77,58 @@
   width: 80%;
 }
 
+.blogs-container section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blogs-container section > h1 {
+  color: rgb(55 65 81);
+  user-select: none;
+  margin-bottom: 15px;
+  text-align: center;
+  animation: textanimation ease-out 1s infinite;
+}
+
+
+@keyframes  textanimation{
+  0% {
+  transform: scaleX(1.0);
+}
+
+ 25% {
+  transform: scaleX(1.03);
+}
+
+ 50% {
+  transform: scaleX(1.05);
+}
+
+ 75% {
+  transform: scaleX(1.07);
+}
+
+ 100% {
+  transform: scaleX(1.1);
+}
+}
+
+.blogs-container section  > button {
+  background-color: rgb(55 65 81);
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 10px -3px 5px 3px(0 0 0/ 0.1)
+}
+
+.blogs-container section a {
+  text-decoration: none;
+   color: white;
+}
+
+
 .blogs-container > p {
   text-align: center;
   font-size: 1.2rem;
@@ -511,8 +563,12 @@ textarea {
 }
 
 .blogs-container {
+  display: flex;
+  flex-direction: column;
   width: 90%;
 }
+
+
 
 .blog {
   flex-direction: column;

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context"
+import EmptyBlog from "./Empty-blog";
 
 import '../index.css'
 
@@ -30,7 +31,7 @@ const Home = () => {
     return (
         <div className="blogs-container">
             <p>stories</p>
-            {blogs.map(blog => {
+            { blogs.length === 0 ? <EmptyBlog/> : blogs.map(blog => {
                 random () 
     
                 return (
