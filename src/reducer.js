@@ -1,19 +1,3 @@
-import moment from "moment/moment";
-
-
-const updateBlog = async (id, blog) => {
-    try {
-        const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`, {
-            method: "PUT",
-            headers: {
-                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(blog)
-        })
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 
 
@@ -66,27 +50,19 @@ export const reducer = (state, action) => {
     }
     
     if (action.type === 'UPDATE') {
-        let title = action.title;
-        let author = action.author;
-        let category = action.category;
-        let content = action.content;
-        let date = moment().format().slice(0, 10)
-        let newBlog = {
-            title, 
-            author,
-            category,
-            content,
-            date,
-
+         const updateBlog = async (id, blog) => {
+         const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`, {
+            method: "PUT",
+            headers: {
+                 'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(blog)
+         })
+             if (response.ok) {
+            window.location.href = '/'
         }
-            // updateBlog(action.id, newBlog);
-            window.location.href = '/';
-            // console.log(action.id , newBlog);
-
-          action.title = '';
-          action.author = '';
-          action.category = 'Tech';
-          action.content = '';
+        }
+        updateBlog(action.id, action.blog);
         return state
     }
       

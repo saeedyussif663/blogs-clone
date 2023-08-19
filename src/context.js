@@ -45,15 +45,18 @@ const AppProvider = ({ children }) => {
         }
     }
 
-    const updateHandler = (e, id, title, author, category, content) => {
-        e.preventDefault();
-        dispatch({
-            type: 'UPDATE',
-            id,
-            title,
+    const updateHandler = (id, title, author, category, content) => {
+        let newBlog = {
+            title, 
             author,
             category,
-            content
+            content,
+            dateCreated: moment().format().slice(0, 10)
+        }
+        dispatch({
+            type: 'UPDATE',
+            blog: newBlog,
+            id
         })
     }
 

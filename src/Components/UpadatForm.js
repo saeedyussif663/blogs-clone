@@ -25,7 +25,11 @@ const UpdateForm = () => {
     
      const handleSubmit = (e) => {
         e.preventDefault();
-        updateHandler(e, id, title, author, category, content);
+        updateHandler(id, title, author, category, content);
+        setTitle('')
+        setAuthor('')
+        setCategory('Tech')
+        setContent('')
     }
 
 
