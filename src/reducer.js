@@ -1,20 +1,5 @@
 import moment from "moment/moment";
 
-const addBlog = async (blog) => {
-        try {
-         const response =  await  fetch('https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs.json', {
-            method: "POST",
-            body: JSON.stringify(blog),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-         });
-            const data = response.json()
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
 
 const updateBlog = async (id, blog) => {
     try {
@@ -94,14 +79,10 @@ export const reducer = (state, action) => {
             date,
 
         }
-        if (title.trim() === '' || content.trim() === '' || author.trim() === '') {
-              return state
-        } else {
-            window.location.href = '/';
-            console.log(action.id , newBlog);
             // updateBlog(action.id, newBlog);
-             
-        }
+            window.location.href = '/';
+            // console.log(action.id , newBlog);
+
           action.title = '';
           action.author = '';
           action.category = 'Tech';
@@ -109,35 +90,24 @@ export const reducer = (state, action) => {
         return state
     }
       
-      if (action.type === "SUBMIT") {
-          let title = action.titleRef.current.value;
-          let author = action.authorRef.current.value;
-          let category = action.categoryRef.current.value;
-          let content = action.contentRef.current.value;
-          let date = moment().format().slice(0, 10);
-          let newBlog = {
-                  title,
-                  author,
-                  category,
-                  content,
-                  dateCreated: date
-          }
-        
-          if (title.trim() === '' || content.trim() === '' || author.trim() === '') {
-              return state
-          } else {
-              addBlog(newBlog);
-              window.location.href = '/';
-          }
-          
-          action.titleRef.current.value = '';
-          action.authorRef.current.value = '';
-          action.categoryRef.current.value = 'Tech';
-          action.contentRef.current.value = '';
+    if (action.type === "SUBMIT") {
+        const submitBlog = async () => {
+            const response = await fetch('https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs.json', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(action.blog)
+            })
+            if (response.ok) {
+                window.location.href = '/';
+            }
+            
+        }
+        submitBlog();
         
           return {
-              ...state,
-              blogDetails: newBlog,
+              ...state
           }
     }
     return state

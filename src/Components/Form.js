@@ -1,27 +1,38 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "../index.css";
 import { useGlobalContext } from "../context";
 
 const Form = () => {
 
     const { submitHandler } = useGlobalContext();
+
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+    const [category, setCategory] = useState('Tech');
+    const [content, setContent] = useState('');
+
     
-    let titleRef = useRef(null)
-    let authorRef = useRef(null)
-    let categoryRef = useRef('Tech')
-    let contentRef = useRef(null)
-    
-    const handleSubmit = (e) => {
-    submitHandler(e, titleRef, authorRef, categoryRef, contentRef)
-                    
-    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        submitHandler(
+            title,
+            author,
+            category,
+            content
+        );
+        setTitle('');
+        setAuthor('');
+        setCategory('Tech');
+        setContent('');
+    };
 
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="title-container">
                 <label htmlFor="title">Title:</label>
                 <input
-                    ref={titleRef}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     type="text"
                     id="title"
                     required
@@ -31,14 +42,16 @@ const Form = () => {
             <div className="author-container">
                 <label htmlFor="author">Author:</label>
                 <input
-                    ref={authorRef}
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
                     type="text" id="author" required maxLength="70" />
                 <i className="fa-solid fa-user"></i>
             </div>
             <div className="category-container">
                 <label htmlFor="category">Category:</label>
                 <select
-                    ref={categoryRef}
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
                     type="text" id="catergory">
                     <option value="Tech">Tech</option>
                     <option value="Food">Food</option>
@@ -52,13 +65,12 @@ const Form = () => {
                 <label htmlFor="content">Content:</label>
                 <textarea
                     required
-                    ref={contentRef}
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                     type="text" id="content" />
             </div>
             <div className="button-container">
-            <button type="sumbit"> POST</button>
-                  
-                   
+            <button type="submit">POST</button>
             </div>
         </form>
     )

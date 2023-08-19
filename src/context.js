@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 
+import moment from "moment/moment";
 
 import {reducer} from '../src/reducer'
 
@@ -56,14 +57,17 @@ const AppProvider = ({ children }) => {
         })
     }
 
-    const submitHandler = (e, title, author, category, content) => {
-        e.preventDefault()
+    const submitHandler = (title, author, category, content) => {
+          let newBlog = {
+                  title,
+                  author,
+                  category,
+                  content,
+                  dateCreated: moment().format().slice(0, 10)
+          }
         dispatch({
             type: "SUBMIT",
-            titleRef: title,
-            authorRef: author,
-            categoryRef: category,
-            contentRef: content
+            blog: {...newBlog}
         });
     }
 
