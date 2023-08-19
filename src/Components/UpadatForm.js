@@ -1,27 +1,46 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import "../index.css";
+import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
-const Form = () => {
+const UpdateForm = () => {
 
-    const { submitHandler } = useGlobalContext();
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+    const [category, setCategory] = useState('Tech');
+    const [content, setContent] = useState('')
+
+    const {updateHandler } = useGlobalContext()
+
+    const { id } = useParams();
+
+    const findSingleBlog = async () => {
+        const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`)
+        const data = await response.json();
+        setTitle(data.title)
+        setAuthor(data.author)
+        setCategory(data.category)
+        setContent(data.content)
+    }
     
-    let titleRef = useRef(null)
-    let authorRef = useRef(null)
-    let categoryRef = useRef('Tech')
-    let contentRef = useRef(null)
-    
-    const handleSubmit = (e) => {
-    submitHandler(e, titleRef, authorRef, categoryRef, contentRef)
-                    
+     const handleSubmit = (e) => {
+        e.preventDefault();
+        updateHandler(e, id, title, author, category, content);
     }
 
+
+    useEffect(() => {
+        findSingleBlog()
+    }, [])
+
+
     return (
-        <form onSubmit={handleSubmit} className="form-container">
+        <form  onSubmit={handleSubmit} className="form-container">
             <div className="title-container">
                 <label htmlFor="title">Title:</label>
                 <input
-                    ref={titleRef}
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
                     type="text"
                     id="title"
                     required
@@ -31,14 +50,16 @@ const Form = () => {
             <div className="author-container">
                 <label htmlFor="author">Author:</label>
                 <input
-                    ref={authorRef}
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
                     type="text" id="author" required maxLength="70" />
                 <i className="fa-solid fa-user"></i>
             </div>
             <div className="category-container">
                 <label htmlFor="category">Category:</label>
                 <select
-                    ref={categoryRef}
+                    onChange={(e) => setCategory(e.target.value)}
+                    value={category}
                     type="text" id="catergory">
                     <option value="Tech">Tech</option>
                     <option value="Food">Food</option>
@@ -51,12 +72,14 @@ const Form = () => {
             <div className="content-container" >
                 <label htmlFor="content">Content:</label>
                 <textarea
+                    onChange={(e) => setContent(e.target.value)}
                     required
-                    ref={contentRef}
+                    value={content}
                     type="text" id="content" />
             </div>
             <div className="button-container">
-            <button type="sumbit"> POST</button>
+                <button type="submit">UPDATE</button>
+
                   
                    
             </div>
@@ -64,4 +87,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default UpdateForm

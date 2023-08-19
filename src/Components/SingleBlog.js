@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate} from "react-router-dom"
 
 import Modal from "./Modal";
 
@@ -16,6 +16,7 @@ const SingleBlog = () => {
     const [randomPicNum, setRandomPicNum] = useState(null)
     const [singleBlog, setSingleBlog] = useState('')
     const { id } = useParams();
+    const navigate = useNavigate();
     
     const findSingleBlog =  (id) => {
       blogs.forEach(element => {
@@ -24,6 +25,8 @@ const SingleBlog = () => {
         }
       });
     } 
+
+
     const randomUser = () => {
             let num = Math.floor((Math.random() * 20) + 10) 
             setRandoomImageNum(num)
@@ -65,7 +68,7 @@ const SingleBlog = () => {
                 </div>
                 <div className="action-container">
                     <i className="fa-solid fa-trash" onClick={toggleModal}></i>
-                    <i className="fa-regular fa-pen-to-square"></i>
+                    <i className="fa-regular fa-pen-to-square" onClick={() => navigate(`/updateblog/${singleBlog.id}`)}></i>
                 </div>
             </div>
             <div className="content-conatainer">

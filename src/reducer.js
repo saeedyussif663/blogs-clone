@@ -1,14 +1,34 @@
 import moment from "moment/moment";
 
-     const  addBlog =  async (blog) => {
-        await  fetch('https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs.json', {
+const addBlog = async (blog) => {
+        try {
+         const response =  await  fetch('https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs.json', {
             method: "POST",
             body: JSON.stringify(blog),
             headers: {
                 'Content-Type': 'application/json'
             }
-      });
+         });
+            const data = response.json()
+        } catch (error) {
+            console.log(error);
+        }
+
     }
+
+const updateBlog = async (id, blog) => {
+    try {
+        const response = await fetch(`https://blogs-clone-5eedb-default-rtdb.firebaseio.com/blogs/${id}.json`, {
+            method: "PUT",
+            headers: {
+                 'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(blog)
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
@@ -58,7 +78,36 @@ export const reducer = (state, action) => {
             ...state,
             isModalShowing: !state.isModalShowing
           }
-      }
+    }
+    
+    if (action.type === 'UPDATE') {
+        let title = action.title;
+        let author = action.author;
+        let category = action.category;
+        let content = action.content;
+        let date = moment().format().slice(0, 10)
+        let newBlog = {
+            title, 
+            author,
+            category,
+            content,
+            date,
+
+        }
+        if (title.trim() === '' || content.trim() === '' || author.trim() === '') {
+              return state
+        } else {
+            window.location.href = '/';
+            console.log(action.id , newBlog);
+            // updateBlog(action.id, newBlog);
+             
+        }
+          action.title = '';
+          action.author = '';
+          action.category = 'Tech';
+          action.content = '';
+        return state
+    }
       
       if (action.type === "SUBMIT") {
           let title = action.titleRef.current.value;

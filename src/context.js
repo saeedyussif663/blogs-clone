@@ -44,6 +44,18 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const updateHandler = (e, id, title, author, category, content) => {
+        e.preventDefault();
+        dispatch({
+            type: 'UPDATE',
+            id,
+            title,
+            author,
+            category,
+            content
+        })
+    }
+
     const submitHandler = (e, title, author, category, content) => {
         e.preventDefault()
         dispatch({
@@ -99,7 +111,8 @@ const AppProvider = ({ children }) => {
             closeNav,
             submitHandler,
             toggleModal,
-            deleteBlog
+            deleteBlog,
+            updateHandler 
         }}>
             {children}
         </AppContext.Provider>

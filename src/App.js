@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import Home from './Components/Home';
 import SingleBlog from './Components/SingleBlog';
 import Loader from './Components/Loader'
+import UpdateForm from './Components/UpadatForm';
 
 import './index.css';
 import { useGlobalContext } from './context';
@@ -21,7 +22,8 @@ function App() {
         <Routes>
           <Route   path='/' element={state.isLoading ? <Loader /> : <Home />  }/> 
           <Route path='/blogs/:id'  element={state.isLoading ? <Loader/> : <SingleBlog/>}  />
-          <Route  path='/addnew' element={<Form action="POST"/>} />
+          <Route path='/addnew' element={<Form/>} />
+          <Route path='/updateblog/:id' element={<UpdateForm />}/>
             </Routes>
         </div>
         <Footer />

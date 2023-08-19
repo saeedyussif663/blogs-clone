@@ -120,7 +120,6 @@
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  box-shadow: 10px -3px 5px 3px(0 0 0/ 0.1)
 }
 
 .blogs-container section a {
@@ -649,8 +648,8 @@ textarea {
 
 .action-container {
   position: absolute;
-  left: 70px;
-  top: 25px;
+  left: 95px;
+  top: 26px;
 }
 
 .modal {
